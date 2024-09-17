@@ -25,6 +25,8 @@ from pyrogram.errors.exceptions.bad_request_400 import StickerEmojiInvalid
 from pyrogram.types.messages_and_media import message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
+modules_dir = "path_to_modules_directory"
+cookie_path = os.path.join(modules_dir, "cookies.txt")
 
 bot = Client(
     "bot",
@@ -162,7 +164,7 @@ async def upload(bot: Client, m: Message):
             if "jw-prod" in url:
                 cmd = f'yt-dlp -o "{name}.mp4" "{url}"'
             else:
-                cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
+                cmd = f'yt-dlp --cookies "{cookie_path}" -f "{ytf}" "{url}" -o "{name}.mp4"'
 
             try:  
                 
